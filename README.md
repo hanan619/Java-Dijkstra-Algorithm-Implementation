@@ -1,55 +1,6 @@
 # GSM0710 Multiplexer Protocol
 
-This project implements the **GSM0710 Multiplexer Protocol** for serial communication, allowing multiple virtual serial ports over a single physical port.
+This project implements the **GSM0710 multiplexer protocol** to manage serial port communication effectively. It provides multiple options for setting up and controlling the communication parameters.
 
 ## Usage
-
-```bash
-ublox_mux_win32 [options]
-Options:
-Option	Description	Default Value
--p <serport>	Serial port device to connect.	COM62
--f <framsize>	Maximum frame size (Range: 5-1509).	1500
--n <num ports>	Number of virtual serial ports to open/listen for apps (Max: 7).	5
--H	Disable hardware flow control on serial port.	Enabled
--b <baudrate>	Baud rate for COM ports.	115200 bps
--V <verbosity>	Verbosity level (1: Critical, 2: Error, 3: Warning, 4: Info, 5: Debug).	4
--d	Display detailed mux frame information (requires log level 5 - Debug).	Disabled
--N <num re-trans>	Maximum number of re-transmissions (Range: 0-5).	3
--A <timeout ms>	Acknowledgement timer in 10ms units (Range: 1-255).	253
--T <timeout ms>	Control channel response timer in 10ms units (Range: 2-255).	254
--W <timeout ms>	Wake-up response timer (Range: 0-255).	0
--L <log filename>	Log file location and name.	ubx_mux_trace.txt
--h	Show help message.	
-Example:
-bash
-Copy code
-ublox_mux_win32 -p COM28 -b 921600 -V5 -d
-Compiling
-To compile the project, use CMake to generate the Visual Studio project:
-
-bash
-Copy code
-cmake CMakeLists.txt
-Compiler: MSVC 2019 or higher
-C++ Standard: C++17
-Naming Convention
-Category	Convention	Example
-Macros	UPPERCASE_WITH_UNDERSCORES	MY_CUSTOM_MACRO
-constexpr	camelCase (prefixed with c)	c_maxValue
-const Global Variables	camelCase (prefixed with c)	c_maxRetries
-Global Variables	camelCase	globalCounter
-Class Names	PascalCase	MyCustomClass
-Member Variables	camelCase (prefixed with m_)	m_width, m_name
-Struct Names	PascalCase	MyCustomStruct
-Struct Members	camelCase	counter
-Function Names	camelCase	myFunction
-Function Parameters	camelCase	newSize, fileName
-Local Variables	camelCase	localCounter, index
-Directory Structure
-src/: Contains all source files (*.cpp).
-include/: Contains all header files (*.h).
-license/: All required licenses for Winmux.
-release_letter/: Contains the release letter PDF.
-License
-See the license/ folder for detailed licensing information.
+options: -p <serport> : Serial port device to connect. Default [COM62]. -f <framsize> : Maximum frame size. Supported range: 5 - 1509. Default [1500] -n <num ports> : Number of virtual serial ports to open/listen for apps, max supported is 7. Default [5] -H : Use this parameter to disable hardware flow control on serial port. Default Flow control [ENABLED] -b <baudrate> : The baud rate to be used for the COM ports. Default [115200]bps -V <verbosity> : Default (Info) [4] CRITICAL 1, ERROR 2, WARNING 3, INFO 4, DEBUG 5. -d : Displays detailed information regarding mux frames (frame dumps) depending on the set log level. Log Level Required = 5 (DEBUG). Default [DISABLED] -N <num re-trans> : Maximum number of retransmissions. Allowed range is 0-5. Default [3] -A <timeout ms> : Acknowledgement timer in units of ten milliseconds. The allowed range is 1-255. Default [253] -T <timeout ms> : Response timer for the multiplexer control channel in units of ten milliseconds. The allowed range is 2-255. Default [254] -W <timeout ms> : Wake up response timer. The allowed range is 0-255. Default [0] -L <log filename> : Specifies the log filename and location to be used. Default [ubx_mux_trace.txt] -h : Show this help message
