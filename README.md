@@ -1,13 +1,55 @@
-# Java-Dijkstra-Algorithm-Implementation
+# GSM0710 Multiplexer Protocol
 
-This GitHub repository hosts a Java implementation of Dijkstra's algorithm, a fundamental graph traversal and shortest path finding algorithm. Developed with a focus on learning and demonstration, this project serves as an educational resource for those interested in understanding the inner workings of Dijkstra's algorithm.
+This project implements the **GSM0710 Multiplexer Protocol** for serial communication, allowing multiple virtual serial ports over a single physical port.
 
-Key Features:
+## Usage
 
-Dijkstra's Algorithm: The repository contains a clear and well-commented implementation of Dijkstra's algorithm, showcasing its step-by-step execution and highlighting the core concepts involved in finding the shortest path in a graph.
+```bash
+ublox_mux_win32 [options]
+Options:
+Option	Description	Default Value
+-p <serport>	Serial port device to connect.	COM62
+-f <framsize>	Maximum frame size (Range: 5-1509).	1500
+-n <num ports>	Number of virtual serial ports to open/listen for apps (Max: 7).	5
+-H	Disable hardware flow control on serial port.	Enabled
+-b <baudrate>	Baud rate for COM ports.	115200 bps
+-V <verbosity>	Verbosity level (1: Critical, 2: Error, 3: Warning, 4: Info, 5: Debug).	4
+-d	Display detailed mux frame information (requires log level 5 - Debug).	Disabled
+-N <num re-trans>	Maximum number of re-transmissions (Range: 0-5).	3
+-A <timeout ms>	Acknowledgement timer in 10ms units (Range: 1-255).	253
+-T <timeout ms>	Control channel response timer in 10ms units (Range: 2-255).	254
+-W <timeout ms>	Wake-up response timer (Range: 0-255).	0
+-L <log filename>	Log file location and name.	ubx_mux_trace.txt
+-h	Show help message.	
+Example:
+bash
+Copy code
+ublox_mux_win32 -p COM28 -b 921600 -V5 -d
+Compiling
+To compile the project, use CMake to generate the Visual Studio project:
 
-Educational Purpose: This project is ideal for students, developers, and enthusiasts who want to grasp the underlying principles of graph algorithms and gain hands-on experience with Dijkstra's algorithm.
-
-Demonstration: Through this repository, you can explore how Dijkstra's algorithm works on different types of graphs, making it a valuable resource for visualizing and understanding its behavior.
-
-Whether you're a beginner learning about graph algorithms or an experienced developer looking to review Dijkstra's algorithm, this Java implementation provides an accessible and insightful resource. Dive into the world of graphs and pathfinding with this educational repository.
+bash
+Copy code
+cmake CMakeLists.txt
+Compiler: MSVC 2019 or higher
+C++ Standard: C++17
+Naming Convention
+Category	Convention	Example
+Macros	UPPERCASE_WITH_UNDERSCORES	MY_CUSTOM_MACRO
+constexpr	camelCase (prefixed with c)	c_maxValue
+const Global Variables	camelCase (prefixed with c)	c_maxRetries
+Global Variables	camelCase	globalCounter
+Class Names	PascalCase	MyCustomClass
+Member Variables	camelCase (prefixed with m_)	m_width, m_name
+Struct Names	PascalCase	MyCustomStruct
+Struct Members	camelCase	counter
+Function Names	camelCase	myFunction
+Function Parameters	camelCase	newSize, fileName
+Local Variables	camelCase	localCounter, index
+Directory Structure
+src/: Contains all source files (*.cpp).
+include/: Contains all header files (*.h).
+license/: All required licenses for Winmux.
+release_letter/: Contains the release letter PDF.
+License
+See the license/ folder for detailed licensing information.
